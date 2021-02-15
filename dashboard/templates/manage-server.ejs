@@ -1,0 +1,110 @@
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DashBoard</title>
+    <script src= "../templates/dashboard.js"></script>
+    <meta name="description" content="Group Bot That Will Help You In Your Custom Groups">
+    <meta name="keywords" content="bot,discord,bot dicsord,Group Bot,discord bots,groups discord,discord custom bot">
+    <meta name="author" content="Group ">
+    <meta property="og:title" content="Group Bot."/>
+    <meta property="og:description" content="I'am a Discord group bot, i will help you in your custom  group for you and your friends!." />
+    <meta property="og:url" content="/" />
+    <meta name="theme-color" content="#1f8cec" />    	
+    <meta property="og:image" content="https://images-ext-2.discordapp.net/external/cFOS2RP0CfXuZoUtWpl0N1j14jm4vG4hDkS0GQGHL7I/%3Fsize%3D128/https/cdn.discordapp.com/avatars/750005980024143963/3546dbc45a061b15d0063bfb6c20fce0.jpg?width=96&height=96"/>
+      
+		<link rel="icon" href="https://images-ext-2.discordapp.net/external/cFOS2RP0CfXuZoUtWpl0N1j14jm4vG4hDkS0GQGHL7I/%3Fsize%3D128/https/cdn.discordapp.com/avatars/750005980024143963/3546dbc45a061b15d0063bfb6c20fce0.jpg?width=96&height=96">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../templates/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500&amp;display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">	</head>
+    <body id="body" class="<%= guildID %>">
+<form style="font_table">
+        <header oncontextmenu="return false;">
+            <img class="headerl" src="https://images-ext-2.discordapp.net/external/cFOS2RP0CfXuZoUtWpl0N1j14jm4vG4hDkS0GQGHL7I/%3Fsize%3D128/https/cdn.discordapp.com/avatars/750005980024143963/3546dbc45a061b15d0063bfb6c20fce0.jpg?width=96&height=96"/>
+             <nav>
+             <a href="https://our-dashboard.glitch.me/" ><i class="fas fa-home"></i> Home</a>
+
+           <a type="click" id="support_join"><i class="fas fa-cog" id="support_server_text"></i> Support</a>
+
+<% if(user) { %>
+<a href="../logout"><img class="avatar" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.gif?size=32" alt="user-avatar">&nbsp;<%= user.username %> - LogOut</a>
+      <% } else { %> 
+           <a class="login" href= "/login"><i class="fab fa-discord"></i> Login</a>
+          <% } %>
+
+          </nav> 
+               
+          </header>  
+          <hr>
+  </form>   
+<br>
+
+<div class="form-group">
+<style>
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
+
+<div class="dropdown">
+  <button class="dropbtn">Dropdown</button>
+  <div class="dropdown-content">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+</div>
+
+
+</div>
+
+
+
+  </body>
+</html>
