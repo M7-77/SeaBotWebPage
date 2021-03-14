@@ -1,0 +1,95 @@
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DashBoard</title>
+        <link href="https://bootswatch.com/4/cyborg/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="description" content="Group Bot That Will Help You In Your Custom Groups">
+    <meta name="keywords" content="bot,discord,bot dicsord,Group Bot,discord bots,groups discord,discord custom bot">
+    <meta name="author" content="Group ">
+    <meta property="og:title" content="Group Bot."/>
+    <meta property="og:description" content="I'am a Discord group bot, i will help you in your custom  group for you and your friends!." />
+    <meta property="og:url" content="/" />
+    <meta name="theme-color" content="#1f8cec" />    	
+    <meta property="og:image" content="https://images-ext-2.discordapp.net/external/cFOS2RP0CfXuZoUtWpl0N1j14jm4vG4hDkS0GQGHL7I/%3Fsize%3D128/https/cdn.discordapp.com/avatars/750005980024143963/3546dbc45a061b15d0063bfb6c20fce0.jpg?width=96&height=96"/>
+      
+		<link rel="icon" href="https://images-ext-2.discordapp.net/external/cFOS2RP0CfXuZoUtWpl0N1j14jm4vG4hDkS0GQGHL7I/%3Fsize%3D128/https/cdn.discordapp.com/avatars/750005980024143963/3546dbc45a061b15d0063bfb6c20fce0.jpg?width=96&height=96">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./templates/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500&amp;display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+	</head>
+    <body>
+<form style="font_table">
+        <header oncontextmenu="return false;">
+            <img class="headerl" src="https://images-ext-2.discordapp.net/external/cFOS2RP0CfXuZoUtWpl0N1j14jm4vG4hDkS0GQGHL7I/%3Fsize%3D128/https/cdn.discordapp.com/avatars/750005980024143963/3546dbc45a061b15d0063bfb6c20fce0.jpg?width=96&height=96"/>
+             <nav>
+             <a href="https://our-dashboard.glitch.me/" ><i class="fas fa-home"></i> Home</a>
+
+           <a type="click" id="support_join"><i class="fas fa-cog" id="support_server_text"></i> Support</a>
+
+<% if(user) { %>
+<a href="logout"><img class="avatar" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.gif?size=32" alt="user-avatar">&nbsp;<%= user.username %> - LogOut</a>
+      <% } else { %> 
+           <a class="login" href= "/login"><i class="fab fa-discord"></i> Login</a>
+          <% } %>
+
+          </nav> 
+               
+          </header>  
+          <hr>
+  </form>         
+      </body>
+
+
+  <% user.guilds.forEach(guild => { 
+    const permsOnGuild = new DISCORD.Permissions(guild.permissions);
+
+    if(!permsOnGuild.has("MANAGE_GUILD")) return;
+  %>
+  <li class="media" style="padding: 10px;">
+    <% if (guild.icon) { %>
+      <img class="avatars" src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` %>" style="width: 80px;" alt="">
+    <% } else { %>
+      <canvas style="background-color: #7289da" class="names"  id="<%= guild.name.split(' ').join('').replace(`'`, ``) %>" width="80px" height="80px"></canvas>
+      <script>
+        function draw() {
+          const ctx = document.getElementById("<%= guild.name.split(' ').join('').replace(`'`, ``) %>").getContext('2d');
+document.getElementById("<%= guild.name.split(' ').join('').replace(`'`, ``) %>").setAttribute("class", "avatars")	
+
+          ctx.font = '30px Arial';
+          ctx.textAlign = "center";
+          ctx.fillStyle = "white";
+          ctx.fillText("<%= guild.name.split(' ').map(v => v[0]).join('') %>", 25, 50);
+        };
+        draw();
+      </script>
+    <% } %>
+    <div class="media-body">
+        <% 
+        let href, text;
+        let enabled;
+try{
+        if(bot.guilds.cache.get(guild.id)) {
+          href = `/dashboard/${guild.id}`;
+          text = "Manage";
+          enabled = true;
+        } else {
+          href = `https://discordapp.com/oauth2/authorize?client_id=${bot.appInfo.id}&scope=bot&guild_id=${guild.id}&response_type=code&redirect_uri=${encodeURIComponent(bot.config.dashboard.callbackURL)}`;
+          text = "Invite Bot";
+          enabled = true;
+        }
+} catch {}
+        %> 
+        <br><h5 class="mt-0 mb-1"><%= guild.name %></h5>&nbsp;<a href="<%= href %>"><i class="fas fa-cog"></i> <%= text %></a>
+
+      </div>
+    </li>
+  <% }); %>
+
+    <script src= "./templates/main.js"></script>
+
+</html>
